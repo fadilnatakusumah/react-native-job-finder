@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "44436384345",
+    "firebase_url": "https://jobfinder-firebase.firebaseio.com",
+    "project_id": "jobfinder-firebase",
+    "storage_bucket": "jobfinder-firebase.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:44436384345:android:3618a6cff7146f1d",
+        "android_client_info": {
+          "package_name": "com.fadilnatakusumah.jobfinding"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "44436384345-70ff0upver6ucogpj86vr8f3t5i7so0k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBqiONAsGEyCGVp8xUz7pcLtr4yQ7Yh1Qg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
