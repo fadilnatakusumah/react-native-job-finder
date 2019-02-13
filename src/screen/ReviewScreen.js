@@ -11,8 +11,8 @@ class ReviewScreen extends Component {
       headerRight: (
         <Button
           type={'clear'}
-          icon={{ name: 'gear', type: 'font-awesome' }}
-          onPress={() => { alert('SETTING SCREEN') }}
+          icon={{ name: 'gear', type: 'font-awesome', color: '#4b0556' }}
+          onPress={() => { navigation.navigate('setting') }}
         />
       )
     }
@@ -22,7 +22,7 @@ class ReviewScreen extends Component {
   }
   viewDetail = (item) => {
     // console.log('item', item)
-    this.props.navigation.navigate('DetailJob', { item });
+    this.props.navigation.navigate('detailJob', { item });
   }
 
   keyExtractor = (item, index) => item.id;

@@ -14,6 +14,7 @@ import DeckScreen from './src/screen/DeckScreen';
 import SettingScreen from './src/screen/SettingScreen';
 import ReviewScreen from './src/screen/ReviewScreen';
 import DetailScreen from './src/screen/DetailScreen';
+import DetailReviewScreen from './src/screen/DetailReviewScreen';
 
 export default class App extends React.Component {
   componentWillMount() {
@@ -55,7 +56,7 @@ export default class App extends React.Component {
           Review: {
             screen: createStackNavigator({
               review: { screen: ReviewScreen },
-              DetailJob: { screen: DetailScreen },
+              detailJob: { screen: DetailReviewScreen },
               setting: { screen: SettingScreen }
             }, {
                 headerLayoutPreset: 'center'
