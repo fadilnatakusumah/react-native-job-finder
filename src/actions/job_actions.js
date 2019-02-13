@@ -1,5 +1,6 @@
-import { SEARCH_JOB } from "../reducers/types";
+import { SEARCH_JOB, SAVE_JOB, DUPLICATED_JOB } from "../reducers/types";
 import Axios from "axios";
+import _ from 'lodash';
 
 const ENDPOINT_JOBS = 'https://jobs.github.com/positions.json?'
 
@@ -17,5 +18,33 @@ export const searchJob = (desc, region, callback) => async dispatch => {
         payload: data
     })
     callback();
+}
 
+
+export const saveJob = (item, callback) => {
+    return (dispatch, getState) => {
+        const savedJobs = getState().savedJobs;
+        if (savedJobs.length > 0) {
+            _.find(savedJobs, (job) => {
+                if (job.id === item.id) {
+                    callback('You already save this job');
+                    dispatch({
+                        type: DUPLICATED_JOB,
+                    });
+                } else {
+                    dispatch({
+                        type: SAVE_JOB,
+                        payload: item
+                    });
+                    callback('Job is saved');
+                }
+            })
+        } else {
+            dispatch({
+                type: SAVE_JOB,
+                payload: item
+            });
+            callback('Job is saved');
+        }
+    }
 }

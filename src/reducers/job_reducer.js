@@ -9,6 +9,8 @@ export default function (state = INITIAL_STATE, action) {
                 ...state,
                 jobs: action.payload
             }
+            // case SAVED_JOBS:
+            // return
         default:
             return state;
     }

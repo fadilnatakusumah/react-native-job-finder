@@ -1,11 +1,22 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { Font } from 'expo';
 import { Text, View, ActivityIndicator } from 'react-native'
 import { Input, Icon, Button } from 'react-native-elements';
 
 class Form extends Component {
   state = {
-    isLoading: false
+    isLoading: false,
+    fontLoaded: false
   };
+
+  async componentDidMount() {
+    await Font.loadAsync({
+      'vagRounded': require('../../../assets/fonts/VAGRoundedStd-Black.ttf'),
+    });
+    this.setState({ fontLoaded: true })
+    console.log('font loaded!');
+    
+  }
 
   formHasErrors = () => {
 
@@ -29,9 +40,7 @@ class Form extends Component {
     }
   }
   onSubmit = () => {
-    // this.setState({ isLoading: true });
     this.props.onSubmit();
-    // this.setState({ isLoading: false })
   }
 
   render() {
@@ -40,16 +49,20 @@ class Form extends Component {
         style={{ justifyContent: 'center' }}
       >
         <View style={{ margin: 15 }}>
-          <Text style={{
-            // fontFamily: 'VAGRoundedStd-Black',
-            fontSize: 35,
-            textAlign: 'center',
-            color: 'white',
-            fontWeight: 'bold'
-          }}
-          >{
-              this.props.authMode === 'login' ? 'Login' : 'Register'}
-          </Text>
+          {this.state.fontLoaded
+            ? (<Text style={{
+              fontFamily: 'vagRounded',
+              fontSize: 35,
+              textAlign: 'center',
+              color: 'white',
+              // fontWeight: 'bold'
+            }}
+            >{
+                this.props.authMode === 'login' ? 'Login' : 'Register'}
+            </Text>)
+            : null
+          }
+
         </View>
 
         <Input

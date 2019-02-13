@@ -13,6 +13,7 @@ import SearchScreen from './src/screen/SearchScreen';
 import DeckScreen from './src/screen/DeckScreen';
 import SettingScreen from './src/screen/SettingScreen';
 import ReviewScreen from './src/screen/ReviewScreen';
+import DetailScreen from './src/screen/DetailScreen';
 
 export default class App extends React.Component {
   componentWillMount() {
@@ -41,10 +42,20 @@ export default class App extends React.Component {
       main: {
         screen: createBottomTabNavigator({
           Search: { screen: SearchScreen },
-          Deck: { screen: DeckScreen },
+          Deck: {
+            screen: createStackNavigator({
+              Deck: {
+                screen: DeckScreen,
+              },
+              DetailJob: { screen: DetailScreen }
+            },{
+              headerLayoutPreset: 'center'
+            })
+          },
           Review: {
             screen: createStackNavigator({
               review: { screen: ReviewScreen },
+              DetailJob: { screen: DetailScreen },
               setting: { screen: SettingScreen }
             }, {
                 headerLayoutPreset: 'center'
@@ -57,7 +68,8 @@ export default class App extends React.Component {
             // },
             tabBarOptions: {
               tabStyle: {
-                backgroundColor: '#4b0556'
+                backgroundColor: '#4b0556',
+                paddingTop: 5
               },
               activeTintColor: '#F44336',
               labelStyle: {
@@ -97,7 +109,7 @@ export default class App extends React.Component {
 
     return (
       <Provider store={store}>
-          <AppContainer />
+        <AppContainer />
       </Provider>
       // <View style={styles.container}>
       //   <Text>Open up App.js to start working on your app!</Text>

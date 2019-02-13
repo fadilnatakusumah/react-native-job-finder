@@ -8,3 +8,6 @@ export const FACEBOOK_LOGIN_FAIL = 'facebook_login_FAIL';
 
 
 export const SEARCH_JOB = 'search_job';
+export const SAVE_JOB = 'save_job';
+export const DUPLICATED_JOB = 'duplicated_job';
+export const CLEAR_SAVED_JOBS = 'clear_saved_job';
