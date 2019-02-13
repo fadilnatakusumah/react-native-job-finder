@@ -14,8 +14,6 @@ class Form extends Component {
       'vagRounded': require('../../../assets/fonts/VAGRoundedStd-Black.ttf'),
     });
     this.setState({ fontLoaded: true })
-    console.log('font loaded!');
-    
   }
 
   formHasErrors = () => {

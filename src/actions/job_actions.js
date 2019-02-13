@@ -27,16 +27,16 @@ export const saveJob = (item, callback) => {
         if (savedJobs.length > 0) {
             _.find(savedJobs, (job) => {
                 if (job.id === item.id) {
-                    callback('You already save this job');
                     dispatch({
                         type: DUPLICATED_JOB,
                     });
+                    callback('You already save this job');
                 } else {
                     dispatch({
                         type: SAVE_JOB,
                         payload: item
                     });
-                    callback('Job is saved');
+                    return callback('Job is saved');
                 }
             })
         } else {

@@ -11,9 +11,7 @@ export default function (state = INITIAL_STATE, action) {
                 action.payload
             ], 'id')
         case DUPLICATED_JOB:
-            return {
-                ...state
-            }
+            return state
         default:
             return state;
     }

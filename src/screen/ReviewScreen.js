@@ -1,28 +1,62 @@
 import React, { Component } from 'react'
-import { Text, StyleSheet, View } from 'react-native'
+import { Text, StyleSheet, View, FlatList } from 'react-native'
+import { ListItem, Button } from 'react-native-elements'
 import { connect } from 'react-redux';
 import _ from 'lodash';
 
 class ReviewScreen extends Component {
-  static navigationOptions = {
-    headerTitle: 'Saved Jobs'
+  static navigationOptions = ({ navigation }) => {
+    return {
+      headerTitle: 'Saved Jobs',
+      headerRight: (
+        <Button
+          type={'clear'}
+          icon={{ name: 'gear', type: 'font-awesome' }}
+          onPress={() => { alert('SETTING SCREEN') }}
+        />
+      )
+    }
   }
   static defaultProps = {
     savedJobsList: []
   }
+  viewDetail = (item) => {
+    // console.log('item', item)
+    this.props.navigation.navigate('DetailJob', { item });
+  }
+
+  keyExtractor = (item, index) => item.id;
+
+  renderListJobs = ({ item }) => (
+    <ListItem
+      title={item.title}
+      subtitle={item.type}
+      leftAvatar={{
+        source: { uri: item.company_logo }
+      }}
+      onPress={() => this.viewDetail(item)}
+    />
+  )
 
   renderSavedJobs = () => {
-    console.log('thisprops', this.props);
     const { savedJobsList } = this.props;
+    console.log('savedJobsList', savedJobsList);
     if (savedJobsList.length > 0) {
-      return savedJobsList.map(item => {
-        return (
-          <Text key={item.id}>{item.title}</Text>
-        )
-      })
+      // return savedJobsList.map(job => {
+      //   return <Text>{job.title}</Text>
+      // })
+      return (
+        <FlatList
+          keyExtractor={this.keyExtractor}
+          data={savedJobsList}
+          renderItem={this.renderListJobs}
+        />
+      )
     }
     return (
-      <Text>There's no job is saved</Text>
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <Text style={{ fontSize: 25 }}>There's no saved job</Text>
+      </View>
     )
   }
 

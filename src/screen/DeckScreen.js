@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux'
-import * as actions from '../actions';
 
 import {
-  Text, StyleSheet, View, FlatList, Platform,
-  StatusBar
+  Text, StyleSheet, View, FlatList,
 } from 'react-native'
 import { ListItem } from 'react-native-elements';
-import DetailScreen from './DetailScreen';
 
 class DeckScreen extends Component {
   static defaultProps = {
@@ -74,8 +70,12 @@ class DeckScreen extends Component {
     return (
       <View style={styles.containerStyle}>
         {
-          this.props.jobs === null
-            ? <Text>There's no job</Text>
+          this.props.jobs.length === 0
+            ? (
+              <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                <Text style={{ fontSize: 25 }}>There's no job</Text>
+              </View>
+            )
             : <FlatList
               keyExtractor={this.keyExtractor}
               data={this.props.jobs}

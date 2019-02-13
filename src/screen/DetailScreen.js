@@ -16,10 +16,9 @@ class DetailScreen extends Component {
     onSaveHandler = (item) => {
         // alert(item);
         this.props.saveJob(item, (message) => {
-            alert(message)
             ToastAndroid.showWithGravityAndOffset(
                 message,
-                ToastAndroid.LONG,
+                ToastAndroid.SHORT,
                 ToastAndroid.BOTTOM,
                 ToastAndroid.CENTER,
                 150,
@@ -38,7 +37,7 @@ class DetailScreen extends Component {
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 5 }}>
                     <Image
                         source={{ uri: item.company_logo }}
-                        style={{ width: 100, height: 100 }}
+                        style={{ width: 100, height: 100, marginRight: 5 }}
                         resizeMode={'center'}
                     />
                     <View>
