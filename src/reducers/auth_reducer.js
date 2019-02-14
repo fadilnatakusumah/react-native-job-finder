@@ -1,4 +1,4 @@
-import { FACEBOOK_LOGIN_FAIL, FACEBOOK_LOGIN_SUCCESS, FIREBASE_LOGIN_SUCCESS, FIREBASE_LOGIN_FAIL, FIREBASE_REGISTER_SUCCESS, FIREBASE_REGISTER_FAIL } from "./types";
+import { FACEBOOK_LOGIN_FAIL, FACEBOOK_LOGIN_SUCCESS, FIREBASE_LOGIN_SUCCESS, FIREBASE_LOGIN_FAIL, FIREBASE_REGISTER_SUCCESS, FIREBASE_REGISTER_FAIL, LOGOUT_ACCOUNT } from "./types";
 
 const INITIAL_STATE = {};
 
@@ -36,6 +36,11 @@ export default function (state = INITIAL_STATE, action) {
                 token: null,
                 errorMessage: action.payload
             };
+        case LOGOUT_ACCOUNT:
+            return {
+                token: null,
+                toastMessage: action.payload
+            }
         default:
             return state;
     }

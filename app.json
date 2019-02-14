@@ -27,6 +27,8 @@
     ],
     "ios": {
       "supportsTablet": true
-    }
+    },
+    "description": "An app built with React Native where you can find jobs (IT jobs) in your area",
+    "githubUrl": "https://github.com/fadilnatakusumah/react-native-job-finder"
   }
 }

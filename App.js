@@ -1,7 +1,7 @@
 import React from 'react';
-import { ActivityIndicator } from 'react-native';
+import { ActivityIndicator, Platform, StatusBar } from 'react-native';
 import { SplashScreen } from 'expo';
-import { createAppContainer, createBottomTabNavigator, createStackNavigator } from "react-navigation";
+import { createDrawerNavigator, createAppContainer, createBottomTabNavigator, createStackNavigator } from "react-navigation";
 import { Icon } from 'react-native-elements';
 import * as firebase from 'firebase';
 
@@ -19,6 +19,7 @@ import SettingScreen from './src/screen/SettingScreen';
 import ReviewScreen from './src/screen/ReviewScreen';
 import DetailScreen from './src/screen/DetailScreen';
 import DetailReviewScreen from './src/screen/DetailReviewScreen';
+import DrawerScreen from './src/screen/DrawerScreen';
 
 export default class App extends React.Component {
   componentWillMount() {
@@ -44,8 +45,8 @@ export default class App extends React.Component {
     const TabNavigation = createBottomTabNavigator({
       welcome: { screen: WelcomeScreen },
       auth: { screen: AuthScreen },
-      main: {
-        screen: createBottomTabNavigator({
+      main: createDrawerNavigator({
+        drawerStack: createBottomTabNavigator({
           Search: { screen: SearchScreen },
           Deck: {
             screen: createStackNavigator({
@@ -65,7 +66,7 @@ export default class App extends React.Component {
             }, {
                 headerLayoutPreset: 'center'
               })
-          }
+          },
         }, {
             // activeTintColor: '#F44336',
             // barStyle: {
@@ -97,7 +98,12 @@ export default class App extends React.Component {
               },
             })
           })
-      }
+      }, {
+          contentComponent: DrawerScreen,
+          style: {
+            marginTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0
+          }
+        })
     }, {
         initialRouteName: 'auth',
         tabBarOptions: {

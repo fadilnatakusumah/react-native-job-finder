@@ -1,7 +1,7 @@
 import { Facebook } from 'expo';
 import * as firebase from 'firebase';
-import { AsyncStorage } from "react-native";
-import { FACEBOOK_LOGIN_SUCCESS, FACEBOOK_LOGIN_FAIL, FIREBASE_LOGIN_SUCCESS, FIREBASE_LOGIN_FAIL, FIREBASE_REGISTER_SUCCESS, FIREBASE_REGISTER_FAIL } from '../reducers/types';
+import { AsyncStorage, Alert } from "react-native";
+import { FACEBOOK_LOGIN_SUCCESS, FACEBOOK_LOGIN_FAIL, FIREBASE_LOGIN_SUCCESS, FIREBASE_LOGIN_FAIL, FIREBASE_REGISTER_SUCCESS, FIREBASE_REGISTER_FAIL, LOGOUT_ACCOUNT } from '../reducers/types';
 
 
 const APP_ID = '350804358856723' // you can your app id from fb devs here, or you can use mine
@@ -75,5 +75,38 @@ export const onFirebaseRegister = (email, password) => {
                 })
                 // console.error(err);
             })
+    }
+}
+
+export const logout = (callback) => {
+    return dispatch => {
+        Alert.alert(
+            'Logout',
+            'Are you sure you want to logout?',
+            [
+                {
+                    text: 'Cancel',
+                    onPress: () => {
+                        alert('Canceled')
+                    },
+                    style: 'cancel'
+                },
+                {
+                    text: 'OK',
+                    onPress: async () => {
+                        await AsyncStorage.removeItem('token', (err) => {
+                            console.log(err);
+                            callback();
+                            dispatch({
+                                type: LOGOUT_ACCOUNT,
+                                payload: 'Logout success'
+                            })
+                        });
+                    },
+                    // style
+                }
+            ],
+            { cancelable: false }
+        )
     }
 }

@@ -6,6 +6,7 @@ export const FIREBASE_REGISTER_FAIL = 'firebase_register_fail';
 export const FACEBOOK_LOGIN_SUCCESS = 'facebook_login_success';
 export const FACEBOOK_LOGIN_FAIL = 'facebook_login_FAIL';
 
+export const LOGOUT_ACCOUNT = 'logout_account'
 
 export const SEARCH_JOB = 'search_job';
 export const SAVE_JOB = 'save_job';

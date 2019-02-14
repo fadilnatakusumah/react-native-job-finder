@@ -77,7 +77,9 @@ class AuthScreen extends Component {
   async componentWillMount() {
     this.setState({ isLoading: true })
     await AsyncStorage.getItem('token').then(token => {
-      this.props.navigation.navigate('main');
+      if(token !== null ){
+        this.props.navigation.navigate('main');
+      }      
     }).catch(() => {
       console.log(`user hasn't login yet`)
     })
@@ -87,11 +89,6 @@ class AuthScreen extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps);
-    if (nextProps.token) {
-      this.props.navigation.navigate('main');
-    }
-
     if (nextProps.errorMessage) {
       return this.setState({ errorMessage: nextProps.errorMessage })
     }
@@ -120,8 +117,20 @@ class AuthScreen extends Component {
   }
 
   onAuthComplete = (props) => {
-    if (props.token) {
+    console.log(props);
+    if (props.token !== null) {
+      console.log('ADA TOKEN');
+      
       this.props.navigation.navigate('main');
+    } else if (props.toastMessage) {
+      ToastAndroid.showWithGravityAndOffset(
+        props.toastMessage,
+        ToastAndroid.LONG,
+        ToastAndroid.BOTTOM,
+        ToastAndroid.CENTER,
+        50,
+      )
+      return console.log('Make toast message')
     } else if (props.token === null) {
       console.log('Make toast message')
       ToastAndroid.showWithGravityAndOffset(
@@ -228,7 +237,8 @@ const styles = StyleSheet.create({
 const mapStateToProps = state => {
   return {
     token: state.auth.token,
-    errorMessage: state.auth.errorMessage
+    errorMessage: state.auth.errorMessage,
+    toastMessage: state.auth.toastMessage
   }
 }
 

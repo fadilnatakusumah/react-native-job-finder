@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 import {
   Text, StyleSheet, View, FlatList,
 } from 'react-native'
-import { ListItem } from 'react-native-elements';
+import { ListItem, Button } from 'react-native-elements';
+import { DrawerActions} from "react-navigation";
 
 class DeckScreen extends Component {
   static defaultProps = {
@@ -42,9 +43,17 @@ class DeckScreen extends Component {
     ]
   }
 
-  static navigationOptions = () => {
+  static navigationOptions = ({ navigation }) => {
     return {
-      headerTitle: 'Job Results'
+      headerTitle: 'Job Results',
+      headerLeft: (
+        <Button
+          icon={{name: 'menu', size: 30, type:'material-community', color: '#4b0556'}}
+          onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}
+          type={'clear'}
+          
+        />
+      )
     }
   }
 
