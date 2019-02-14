@@ -1,4 +1,4 @@
-import { SEARCH_JOB, SAVE_JOB, DUPLICATED_JOB } from "../reducers/types";
+import { SEARCH_JOB, SAVE_JOB, DUPLICATED_JOB, CLEAR_SAVED_JOBS } from "../reducers/types";
 import Axios from "axios";
 import _ from 'lodash';
 
@@ -47,4 +47,11 @@ export const saveJob = (item, callback) => {
             callback('Job is saved');
         }
     }
+}
+
+export const clearSavedJobs = () => dispatch => {
+    dispatch({
+        type: CLEAR_SAVED_JOBS
+    })
+    alert('success');
 }

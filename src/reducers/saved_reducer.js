@@ -1,4 +1,4 @@
-import { SAVE_JOB, DUPLICATED_JOB } from "./types";
+import { SAVE_JOB, DUPLICATED_JOB, CLEAR_SAVED_JOBS } from "./types";
 import _ from 'lodash';
 
 const INITIAL_STATE = [];
@@ -11,7 +11,9 @@ export default function (state = INITIAL_STATE, action) {
                 action.payload
             ], 'id')
         case DUPLICATED_JOB:
-            return state
+            return state;
+        case CLEAR_SAVED_JOBS:
+            return []
         default:
             return state;
     }
