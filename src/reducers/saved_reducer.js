@@ -1,10 +1,13 @@
 import { SAVE_JOB, DUPLICATED_JOB, CLEAR_SAVED_JOBS } from "./types";
 import _ from 'lodash';
+import { REHYDRATE } from "redux-persist";
 
 const INITIAL_STATE = [];
 
 export default function (state = INITIAL_STATE, action) {
     switch (action.type) {
+        case REHYDRATE:
+            return action.payload.savedJobs || []
         case SAVE_JOB:
             return _.unionBy([
                 ...state,

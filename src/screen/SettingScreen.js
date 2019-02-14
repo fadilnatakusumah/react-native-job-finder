@@ -11,7 +11,10 @@ class SettingScreen extends Component {
   }
 
   clearAllSavedJobs = () => {
-    this.props.clearSavedJobs();
+    this.props.clearSavedJobs(()=>{
+      alert('Saved jobs cleared')
+      this.props.navigation.navigate('review');
+    });
   }
 
   render() {

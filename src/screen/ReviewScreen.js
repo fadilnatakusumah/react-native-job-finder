@@ -40,11 +40,7 @@ class ReviewScreen extends Component {
 
   renderSavedJobs = () => {
     const { savedJobsList } = this.props;
-    console.log('savedJobsList', savedJobsList);
     if (savedJobsList.length > 0) {
-      // return savedJobsList.map(job => {
-      //   return <Text>{job.title}</Text>
-      // })
       return (
         <FlatList
           keyExtractor={this.keyExtractor}
@@ -76,7 +72,6 @@ const styles = StyleSheet.create({
 })
 
 const mapStateToProps = state => {
-  console.log(state)
   return {
     savedJobsList: state.savedJobs
   }

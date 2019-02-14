@@ -1,11 +1,15 @@
 import React from 'react';
+import { ActivityIndicator } from 'react-native';
 import { SplashScreen } from 'expo';
 import { createAppContainer, createBottomTabNavigator, createStackNavigator } from "react-navigation";
 import { Icon } from 'react-native-elements';
 import * as firebase from 'firebase';
 
 import { Provider } from 'react-redux';
-import store from './src/store';
+import { store, persistor } from './src/store';
+import { PersistGate } from 'redux-persist/integration/react';
+
+
 
 import WelcomeScreen from './src/screen/WelcomeScreen';
 import AuthScreen from './src/screen/AuthScreen';
@@ -49,9 +53,9 @@ export default class App extends React.Component {
                 screen: DeckScreen,
               },
               DetailJob: { screen: DetailScreen }
-            },{
-              headerLayoutPreset: 'center'
-            })
+            }, {
+                headerLayoutPreset: 'center'
+              })
           },
           Review: {
             screen: createStackNavigator({
@@ -110,7 +114,9 @@ export default class App extends React.Component {
 
     return (
       <Provider store={store}>
-        <AppContainer />
+        <PersistGate persistor={persistor} loading={<ActivityIndicator />}>
+          <AppContainer />
+        </PersistGate>
       </Provider>
       // <View style={styles.container}>
       //   <Text>Open up App.js to start working on your app!</Text>
