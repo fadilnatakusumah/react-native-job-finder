@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Text, StyleSheet, View, FlatList } from 'react-native'
 import { ListItem, Button } from 'react-native-elements'
 import { connect } from 'react-redux';
+import { DrawerActions } from 'react-navigation'
 import _ from 'lodash';
 
 class ReviewScreen extends Component {
@@ -13,6 +14,13 @@ class ReviewScreen extends Component {
           type={'clear'}
           icon={{ name: 'gear', type: 'font-awesome', color: '#4b0556' }}
           onPress={() => { navigation.navigate('setting') }}
+        />
+      ),
+      headerLeft: (
+        <Button
+          icon={{ name: 'menu', size: 30, type: 'material-community', color: '#4b0556' }}
+          onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}
+          type={'clear'}
         />
       )
     }

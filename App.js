@@ -22,7 +22,7 @@ import DetailReviewScreen from './src/screen/DetailReviewScreen';
 import DrawerScreen from './src/screen/DrawerScreen';
 
 export default class App extends React.Component {
-  componentWillMount() {
+  componentDidMount() {
     setTimeout(() => {
       SplashScreen.hide();
     }, 1000);

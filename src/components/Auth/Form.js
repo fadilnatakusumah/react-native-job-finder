@@ -9,7 +9,7 @@ class Form extends Component {
     fontLoaded: false
   };
 
-  async componentDidMount() {
+  async componentWillMount() {
     await Font.loadAsync({
       'vagRounded': require('../../../assets/fonts/VAGRoundedStd-Black.ttf'),
     });

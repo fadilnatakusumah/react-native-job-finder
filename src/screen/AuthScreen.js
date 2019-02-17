@@ -7,8 +7,10 @@ import {
   Dimensions,
   KeyboardAvoidingView,
   AsyncStorage,
-  ActivityIndicator
+  ActivityIndicator,
 } from 'react-native'
+
+import { SplashScreen } from 'expo';
 import { Icon, Image } from 'react-native-elements';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -228,7 +230,7 @@ const styles = StyleSheet.create({
     marginTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
     // alignItems: 'center',
     justifyContent: 'center',
-    minHeight: Dimensions.get('window').height - StatusBar.currentHeight,
+    height: Dimensions.get('window').height,
     // alignContent: 'center',
     backgroundColor: '#4b0556'
   }
