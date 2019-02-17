@@ -4,7 +4,7 @@
 ### Quick View
 
 | Auth | Searching Jobs | 
-|--------------|--------|-----------------|----------|
+|--------------|--------|
 |<img src='./assets/gifs/auth.gif' width='175px' />| <img src='./assets/gifs/searching_jobs.gif' width='175px' />
 
 It provides jobs informations in you current area, and make it easy for you to apply
